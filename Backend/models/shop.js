@@ -1,21 +1,22 @@
 const mongoose = require("mongoose");
 
 const shopSchema = new mongoose.Schema({
-  ShopName: {
+  shopName: {
     type: String,
     min: 3,
     max: 20,
     required: true,
     trim: true,
   },
-  SellerName: {
+  slug: String,
+  sellerName: {
     type: String,
     min: 3,
     max: 20,
     required: true,
     trim: true,
   },
-  Category: {
+  category: {
     type: String,
     enum: ["flowergardening", "vegetablegardening", "economicalcrops"],
   },
@@ -42,6 +43,9 @@ const shopSchema = new mongoose.Schema({
     min: 6,
     max: 10,
     select: false,
+  },
+  zipCode: {
+    type: String,
   },
   city: {
     type: String,

@@ -51,6 +51,10 @@ const orderSchema = mongoose.Schema({
   deliveryDate: {
     type: Date,
   },
+  orderStatus: {
+    type: String,
+    enum: ["COmfirmed", "Declined", "Pending"],
+  },
 });
 
 module.exports = mongoose.model("Order", orderSchema);
