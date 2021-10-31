@@ -14,7 +14,9 @@ class SellerList extends StatefulWidget {
 
 class _SellerListState extends State<SellerList> {
 
-final url="https://jsonplaceholder.typicode.com/posts";
+
+  //https://jsonplaceholder.typicode.com/posts
+final url="https://mongoapi3.herokuapp.com/users";
   var _postsJson=[];
   void fetchPosts() async{
     try{
@@ -28,19 +30,21 @@ final url="https://jsonplaceholder.typicode.com/posts";
     }
   }
 /*
-  late List Data;
-  fetchData() async {
-    http.Response response =
-    await http.get('https://govi-piyasa-v-0-1.herokuapp.com/api/v1/shops');
-    setState(() {
-      Data = json.decode(response.body);
-    });
-  }
+  final httpClient=http.Client();
+  List<dynamic> todoData;
+  Future fetchData() async {
+    final Uri restAPIURL=
+    Uri.parse("http://localhost:3000/users");
+    http.Response response=await httpClient.get(restAPIURL);
+ final Map parsedData=await json.decode(response.body.toString());
+ todoData=parsedData['result'];
 
+  }
 */
+/*
    Map data;
    List userData;
-  getUsers() async {
+  fgetUsers() async {
     http.Response response=await http.get('https://govi-piyasa-v-0-1.herokuapp.com/api/v1/shops');
     data=json.decode(response.body);
     setState(() {
@@ -48,12 +52,12 @@ final url="https://jsonplaceholder.typicode.com/posts";
 
     });
 
-  }
+  }*/
   void initState(){
     super.initState();
   //  getUsers();
    fetchPosts();
-  //  fetchData();
+  // fetchData();
 
   }
 
@@ -75,12 +79,15 @@ final url="https://jsonplaceholder.typicode.com/posts";
           itemBuilder:(BuildContext context,index){
 final post=_postsJson[index];
             return Card(
+              child:Padding(
+                padding: EdgeInsets.all(10.0),
             child:Row(
               children:<Widget>[
-            Text("SellerName:${post['title']}"),
+            Text("ShopName:${post['shopname']}"),
+                Text("SellerName:${post['sellername']}"),
               ]
                     ),
-            );
+              ),);
 
 
           }),

@@ -24,10 +24,10 @@ class _LoginState extends State<Login> {
   Future<void> postData() async{
     try {
       final response =await http.post(
-          Uri.parse("https://govipiyasa.herokuapp.com/adduser"),
+          Uri.parse("http://localhost:5000/userTask/createUserTask"),
           body: {
-            "name": name,
-            "password": password
+            "taskTitle":name,
+            "taskDescription": password
           });
       print(response.body);
     }catch(e){
@@ -38,7 +38,7 @@ class _LoginState extends State<Login> {
   navigateToSignUp() async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
   }
-  var name,password,token;
+  var name,password,token,age;
   @override
   Widget build(BuildContext context) {
 TextEditingController _passwordcontroller=new TextEditingController();
@@ -74,6 +74,14 @@ TextEditingController _emailcontroller=new TextEditingController();
             ),
           ),
           SizedBox(height: 10.0,),
+          Container(
+            child: TextField(
+              decoration: InputDecoration(labelText: 'Age',prefixIcon: Icon(Icons.lock),),
+              onChanged: (val){
+                age=val;
+              },
+            ),
+          ),
           RaisedButton(
             padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
             onPressed: (){
@@ -81,7 +89,7 @@ TextEditingController _emailcontroller=new TextEditingController();
                 if(val.data['success']){
                   token=val.data['token'];
                   Fluttertoast.showToast(
-                    msg: 'sucessfull',
+                    msg: 'Login sucessfully',
                     toastLength: Toast.LENGTH_SHORT,
                     gravity: ToastGravity.BOTTOM,
                     backgroundColor: Colors.red,
@@ -92,25 +100,7 @@ TextEditingController _emailcontroller=new TextEditingController();
                 }
               });
             },
-            child: Text('LOGIN',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold)),
-            color: Colors.orange,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-          ),
-          RaisedButton(
-            padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
-            onPressed:(){
-              _passwordcontroller.clear();
-              _emailcontroller.clear();
-              postData();
-            },
-
-            child: Text('register',
+            child: Text('Login',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 20.0,
@@ -121,7 +111,6 @@ TextEditingController _emailcontroller=new TextEditingController();
             ),
           ),
           SizedBox(height: 10.0,),
-
           GestureDetector(
             child: Text('Create an Account?'),
             onTap: navigateToSignUp,

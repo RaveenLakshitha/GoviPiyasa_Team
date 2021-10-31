@@ -22,13 +22,13 @@ class ProductPage extends StatelessWidget {
                 mainAxisSpacing: 15.0,
                 childAspectRatio: 0.8,
                 children: <Widget>[
-                  _buildCard('Plant', 'R2000', 'assets/leaf.png',
+                  _buildCard('Plant', 'Rs000', 'images/leaf.png',
                       false, false, context),
-                  _buildCard('Rose', 'R500', 'assets/leaf2.png',
+                  _buildCard('Rose', 'Rs500', 'images/leaf2.png',
                       true, false, context),
                   _buildCard('Seeds', 'Rs500',
                       'assets/leaf2.png', false, true, context),
-                  _buildCard('Fertilizer', 'Rs800', 'assets/logo1.png',
+                  _buildCard('Fertilizer', 'Rs800', 'images/logo1.png',
                       false, false, context)
                 ],
               )),

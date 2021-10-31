@@ -3,17 +3,19 @@ import 'package:dio/dio.dart';
 
 class ShopService{
   Dio dio =new Dio();
-  addShop(shopName,sellerName, phoneNo,email,city,address) async {
-    return await dio.post('https://govi-piyasa-v-0-1.herokuapp.com/api/v1/shops',data:{
-      "shopName":shopName,
-      "sellerName":sellerName,
-      "contactNumber":phoneNo,
+  addShop(shopName,sellerName,phoneNo,email,address,city) async {
+    return await dio.post('https://mongoapi3.herokuapp.com/adduser',data:{
+      "shopname":shopName,
+      "sellername":sellerName,
+      "contact":phoneNo,
       "email":email,
       "city":city,
       "address":address,
+      "password":address
+
 
     },
-      //  options: Options(contentType: Headers.formUrlEncodedContentType)
+        options: Options(contentType: Headers.formUrlEncodedContentType)
     );
   }
 }

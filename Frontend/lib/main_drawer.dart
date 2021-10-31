@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:govi_piyasa/screeen/Cart.dart';
 import 'package:govi_piyasa/sellerlist.dart';
 import 'package:govi_piyasa/shop.dart';
 
@@ -60,19 +61,19 @@ class MainDrawer extends StatelessWidget{
             ),
           ),
           ListTile(
-            leading: Icon(Icons.search),
-            title:Text('Search', style:TextStyle(fontSize: 12,),
+            leading: Icon(Icons.airport_shuttle),
+            title:Text('Delivery', style:TextStyle(fontSize: 12,),
             ),
             onTap:(){
-             // Navigator.of(context).push(MaterialPageRoute(builder: (context) =>SearchPage()));
+              //Navigator.of(context).push(MaterialPageRoute(builder: (context) =>MyApp()));
             },
           ),
           ListTile(
-            leading: Icon(Icons.image),
-            title:Text('Add Image', style:TextStyle(fontSize: 12,),
+            leading: Icon(Icons.add_shopping_cart),
+            title:Text('Cart', style:TextStyle(fontSize: 12,),
             ),
             onTap:(){
-              //  Navigator.of(context).push(MaterialPageRoute(builder: (context) =>ADD()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) =>CartApp()));
             } ,
           ),
           ListTile(
@@ -99,14 +100,7 @@ class MainDrawer extends StatelessWidget{
               Navigator.of(context).push(MaterialPageRoute(builder: (context) =>ReachUs()));
             },
           ),
-          ListTile(
-            leading: Icon(Icons.burst_mode),
-            title:Text('Slider', style:TextStyle(fontSize: 12,),
-            ),
-            onTap:(){
-            //  Navigator.of(context).push(MaterialPageRoute(builder: (context) =>FirestoreSlideshow()));
-            },
-          ),
+
 
         ],
       ),

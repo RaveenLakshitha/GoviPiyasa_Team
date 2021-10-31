@@ -1,12 +1,10 @@
 
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:govi_piyasa/home.dart';
 import 'Auth/authservice.dart';
 import 'package:http/http.dart' as http;
-
 
 class SignUp extends StatefulWidget {
   @override
@@ -25,10 +23,10 @@ class _SignUpState extends State<SignUp> {
   postData() async{
     try {
       var response = http.post(
-          Uri.parse("https://govipiyasa.herokuapp.com/adduser"),
+          Uri.parse("http://localhost:5000/userTask/createUserTask"),
           body: {
-            "name": "vis",
-            "password": "321"
+            "taskTitle":"test",
+            "taskDescription": "test"
           });
     }catch(e){
       print(e);
@@ -57,8 +55,8 @@ class _SignUpState extends State<SignUp> {
                         Container(
                           child: TextFormField(
                             decoration: InputDecoration(
-                              labelText: 'Name',
-                              prefixIcon: Icon(Icons.person),
+                              labelText: 'Email',
+                              prefixIcon: Icon(Icons.email),
                             ),
                             onChanged: (val){
                               name=val;
@@ -67,8 +65,8 @@ class _SignUpState extends State<SignUp> {
                         Container(
                           child: TextFormField(
                             decoration: InputDecoration(
-                                labelText: 'Email',
-                                prefixIcon: Icon(Icons.email)),),
+                                labelText: 'Name',
+                                prefixIcon: Icon(Icons.person)),),
                         ),
                         Container(
                           child: TextFormField(
@@ -105,6 +103,20 @@ class _SignUpState extends State<SignUp> {
                             });
                           },
                           child: Text('register',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold)),
+                          color: Colors.orange,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                        ),
+                        RaisedButton(
+                          padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
+                          onPressed:postData,
+
+                          child: Text('register3',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20.0,

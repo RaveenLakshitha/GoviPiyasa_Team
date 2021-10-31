@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,24 +12,40 @@ class Shop extends StatefulWidget {
 }
 
 class _ShopState extends State<Shop> {
-
-  Future<void> postData() async{
+/*  "sellerName":sellerName,
+  "contactNumber":phoneNo,
+  "email":email,
+  "address":address,*/
+/*
+ Future<void> postData() async{
     try {
       final response =await http.post(
-          Uri.parse("https://govi-piyasa-v-0-1.herokuapp.com/api/v1/shops"),
+          Uri.parse("http://localhost:5000/userTask/createUserTask"),
           body: {
-            "shopName":shopName,
-            "sellerName":sellerName,
-            "contactNumber":phoneNo,
-            "email":email,
-            "city":city,
-            "address":address,
+            "name":shopName,
+            "age":city
+
           });
       print(response.body);
     }catch(e){
       print(e);
     }
-  }
+  }*/
+  /*
+  final httpClient=http.Client();
+  Map<String,dynamic> customHeaders={
+    "Accept":"application/json",
+    "content-Type":"application/json;charset=UTF-8"
+  };
+
+  Future addData(Map body) async{
+    final Uri restAPIURL=
+    Uri.parse("https://jsonplaceholder.typicode.com/albums");
+    http.Response response=await httpClient.post(restAPIURL
+        ,headers: customHeaders,body: jsonEncode(body));
+    return response.body;
+
+  }*/
   var shopName,email,sellerName,phoneNo,address,city,token;
   @override
   Widget build(BuildContext context) {
@@ -75,7 +93,7 @@ class _ShopState extends State<Shop> {
                           child: TextFormField(
                               decoration: InputDecoration(
                                   labelText: 'SellerName',
-                                  prefixIcon: Icon(Icons.email)),
+                                  prefixIcon: Icon(Icons.attribution_outlined)),
                             onChanged: (val){
                               sellerName=val;
                             },
@@ -85,7 +103,7 @@ class _ShopState extends State<Shop> {
                           child: TextFormField(
                               decoration: InputDecoration(
                                 labelText: 'ContactNumber',
-                                prefixIcon: Icon(Icons.lock),
+                                prefixIcon: Icon(Icons.contact_phone),
                               ),
                             onChanged: (val){
                               phoneNo=val;
@@ -97,7 +115,7 @@ class _ShopState extends State<Shop> {
                           child: TextFormField(
                             decoration: InputDecoration(
                               labelText: 'email',
-                              prefixIcon: Icon(Icons.person),
+                              prefixIcon: Icon(Icons.attach_email_rounded),
                             ),
                             onChanged: (val){
                               email=val;
@@ -115,12 +133,11 @@ class _ShopState extends State<Shop> {
                             },
                           ),
                         ),
-                        SizedBox(height: 20),
                         Container(
                           child: TextFormField(
                             decoration: InputDecoration(
                               labelText: 'address',
-                              prefixIcon: Icon(Icons.lock),
+                              prefixIcon: Icon(Icons.add_location),
                             ),
                             onChanged: (val){
                               address=val;
@@ -130,7 +147,7 @@ class _ShopState extends State<Shop> {
                         RaisedButton(
                           padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
                           onPressed:(){
-                            ShopService().addShop(shopName,sellerName,phoneNo,email,city,address).then((val){
+                            ShopService().addShop(shopName,sellerName,phoneNo,email,address,city).then((val){
                               Fluttertoast.showToast(
                                 msg: val.data['msg'],
                                 toastLength: Toast.LENGTH_SHORT,
@@ -145,26 +162,14 @@ class _ShopState extends State<Shop> {
                           child: Text('create shop',
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 20.0,
+                                  fontSize: 15.0,
                                   fontWeight: FontWeight.bold)),
                           color: Colors.orange,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20.0),
                           ),
                         ),
-                        RaisedButton(
-                          padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
-                          onPressed:postData,
-                          child: Text('create shop 2',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold)),
-                          color: Colors.orange,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                        ),
+
                       ],
                     ),
                   ),

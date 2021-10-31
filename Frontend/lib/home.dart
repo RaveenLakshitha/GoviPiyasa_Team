@@ -4,12 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_carousel_slider/carousel_slider.dart';
 import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
 import 'package:flutter_carousel_slider/carousel_slider_transforms.dart';
-import 'package:govi_piyasa/sellerlist.dart';
+import 'package:govi_piyasa/login_screen.dart';
+import 'package:govi_piyasa/screeen/Cart.dart';
+
 import 'package:govi_piyasa/shop.dart';
 import 'bottombar.dart';
 import 'item_page.dart';
 import 'main_drawer.dart';
 import 'dart:async';
+
+import 'messaging_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -47,31 +51,57 @@ class _MyHomePageState extends State<MyHomePage>
           IconButton(
             icon: Icon(Icons.notifications_none, color: Color(0xFF545D68)),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>SellerList()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>Messaging_Widget()));
             },
           ),
-          IconButton(
-            icon: Icon(Icons.shopping_basket, color: Color(0xFF545D68)),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>Shop()));
-            },
-          ),
+
+          PopupMenuButton<int>(
+              onSelected: (item)=>onSelected(context,item),
+              itemBuilder: (context)=>[
+
+                PopupMenuItem<int>(
+                  value:0,
+                  child:Row(
+                    children:[
+                      Icon(Icons.account_balance_rounded,color:Colors.blue),
+                      Text("Shop create"),
+                    ],
+
+                  ),
+
+
+                ),
+                PopupMenuItem<int>(
+                  value:1,
+                  child:Row(
+                    children:[
+                      Icon(Icons.logout,color:Colors.blue),
+                      Text("Signout"),
+                    ],
+
+                  ),
+
+                ),
+              ],)
         ],
       ),
       drawer: MainDrawer(),
       body: ListView(
-        padding: EdgeInsets.only(left: 20.0),
+        padding: EdgeInsets.all(10.0),
         children: <Widget>[
           Container(
-            height: 300,
+            height: 200,
             child: FutureBuilder(
               future: getimgfromFirebase(),
               builder: (_, snapshot) {
                 return CarouselSlider.builder(
+
                   slideBuilder: (index){
                     DocumentSnapshot sliderimage=snapshot.data[index];
+
                     return Container(
                         child: GestureDetector(
+
                             child: Image.network(sliderimage['img']),
                             onTap: () {
                               Navigator.push<Widget>(
@@ -83,11 +113,10 @@ class _MyHomePageState extends State<MyHomePage>
                             }));},
 
                   autoSliderTransitionTime: Duration(
-                    milliseconds: 2000,
+                    milliseconds: 100,
+
                   ),
-                  autoSliderDelay:Duration(
-                    milliseconds: 200,
-                  ),
+
                   slideTransform: CubeTransform(
                     rotationAngle: 0,
                   ),
@@ -96,7 +125,9 @@ class _MyHomePageState extends State<MyHomePage>
                     currentIndicatorColor: Colors.blue,
 
                   ),
-                  itemCount: snapshot.data.length,);
+                  itemCount: snapshot.data.length,
+                );
+
               },
             ),
           ),
@@ -159,6 +190,15 @@ class _MyHomePageState extends State<MyHomePage>
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomBar(),
     );
+  }
+
+ void onSelected(BuildContext context, int item) {
+    switch(item){
+      case 0:
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) =>Shop()));break;
+      case 1:
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) =>Login()));break;
+    }
   }
 }
 

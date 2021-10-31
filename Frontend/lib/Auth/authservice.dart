@@ -32,5 +32,12 @@ addUser(name,password)async{
 }
 
 
+addShop(name,age)async{
+  return await dio.post('http://localhost:5000/userTask/createUserTask',data:{
+    "taskTitle":name,
+    "taskDescription": age
 
+  },
+      options: Options(contentType: Headers.formUrlEncodedContentType));
+}
 }
