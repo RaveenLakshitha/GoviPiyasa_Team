@@ -54,7 +54,7 @@ class _ShopState extends State<Shop> {
           backgroundColor: Colors.lightGreen,
           elevation: 0.0,
           centerTitle: true,
-          title: Text('create shop',
+          title: Text('Create shop',
               style: TextStyle(
                   fontFamily: 'Varela',
                   fontSize: 20.0,

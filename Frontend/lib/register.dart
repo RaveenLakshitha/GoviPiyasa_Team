@@ -20,19 +20,6 @@ class _SignUpState extends State<SignUp> {
     super.initState();
 
   }
-  postData() async{
-    try {
-      var response = http.post(
-          Uri.parse("http://localhost:5000/userTask/createUserTask"),
-          body: {
-            "taskTitle":"test",
-            "taskDescription": "test"
-          });
-    }catch(e){
-      print(e);
-    }
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -112,20 +99,7 @@ class _SignUpState extends State<SignUp> {
                             borderRadius: BorderRadius.circular(20.0),
                           ),
                         ),
-                        RaisedButton(
-                          padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
-                          onPressed:postData,
 
-                          child: Text('register3',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold)),
-                          color: Colors.orange,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                        ),
                       ],
                     ),
                   ),

@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'dart:async';
 
 import 'package:http/http.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SellerList extends StatefulWidget {
 
@@ -14,9 +15,18 @@ class SellerList extends StatefulWidget {
 
 class _SellerListState extends State<SellerList> {
 
-
+  void lanchwhatsapp({@required number,@required message}) async{
+    String url="whatsapp://send?phone=$number&text=$message";
+    await canLaunch(url) ? launch(url):print("can't open whatsapp");
+  }
   //https://jsonplaceholder.typicode.com/posts
-final url="https://mongoapi3.herokuapp.com/users";
+ // https://mongoapi3.herokuapp.com/users
+/*
+
+  onTap:() {lanchwhatsapp(number: "+94${post['contact']}", message: "hello"); },
+
+*/
+final url="https://mongoapi3.herokuapp.com/experts";
   var _postsJson=[];
   void fetchPosts() async{
     try{
@@ -29,30 +39,7 @@ final url="https://mongoapi3.herokuapp.com/users";
 
     }
   }
-/*
-  final httpClient=http.Client();
-  List<dynamic> todoData;
-  Future fetchData() async {
-    final Uri restAPIURL=
-    Uri.parse("http://localhost:3000/users");
-    http.Response response=await httpClient.get(restAPIURL);
- final Map parsedData=await json.decode(response.body.toString());
- todoData=parsedData['result'];
 
-  }
-*/
-/*
-   Map data;
-   List userData;
-  fgetUsers() async {
-    http.Response response=await http.get('https://govi-piyasa-v-0-1.herokuapp.com/api/v1/shops');
-    data=json.decode(response.body);
-    setState(() {
-      userData=data['data'];
-
-    });
-
-  }*/
   void initState(){
     super.initState();
   //  getUsers();
@@ -68,7 +55,7 @@ final url="https://mongoapi3.herokuapp.com/users";
         backgroundColor: Colors.lightGreen,
         elevation: 0.0,
         centerTitle: true,
-        title: Text('UserList',
+        title: Text('ExpertList',
             style: TextStyle(
                 fontFamily: 'Varela',
                 fontSize: 20.0,
@@ -79,12 +66,21 @@ final url="https://mongoapi3.herokuapp.com/users";
           itemBuilder:(BuildContext context,index){
 final post=_postsJson[index];
             return Card(
+              color: Colors.green,
+              elevation: 10,
               child:Padding(
                 padding: EdgeInsets.all(10.0),
             child:Row(
               children:<Widget>[
-            Text("ShopName:${post['shopname']}"),
-                Text("SellerName:${post['sellername']}"),
+                 ListTile(
+                  leading: Image.network("${post['location']}"),
+                  title:  Text("Name:${post['name']}"),
+                  subtitle: Text("Contact:+94${post['contact']}"),
+                   trailing: Text(post.dateTime.month.toString()),
+                ),
+
+
+
               ]
                     ),
               ),);

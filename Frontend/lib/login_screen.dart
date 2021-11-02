@@ -20,7 +20,7 @@ class _LoginState extends State<Login> {
   void initState() {
     super.initState();
 
-  }
+  }/*
   Future<void> postData() async{
     try {
       final response =await http.post(
@@ -34,7 +34,7 @@ class _LoginState extends State<Login> {
       print(e);
     }
   }
-
+*/
   navigateToSignUp() async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
   }
@@ -55,18 +55,25 @@ TextEditingController _emailcontroller=new TextEditingController();
             ),
           ),
           Container(
-            child: TextField(
+            child: TextFormField(
               controller: _emailcontroller,
-              decoration: InputDecoration(labelText: 'Name', prefixIcon: Icon(Icons.email)),
+              validator: (input) {
+                if (input.isEmpty) return 'Enter Email';
+              },
+              decoration: InputDecoration(labelText: 'Email', prefixIcon: Icon(Icons.email)),
               onChanged: (val){
                 name=val;
               },
             ),
           ),
           Container(
-            child: TextField(
+            child: TextFormField(
               controller: _passwordcontroller,
               obscureText: true,
+              validator: (input) {
+                if (input.length < 5)
+                  return 'Provide Minimum 5 Character';
+              },
               decoration: InputDecoration(labelText: 'Password',prefixIcon: Icon(Icons.lock),),
               onChanged: (val){
                 password=val;
@@ -74,14 +81,6 @@ TextEditingController _emailcontroller=new TextEditingController();
             ),
           ),
           SizedBox(height: 10.0,),
-          Container(
-            child: TextField(
-              decoration: InputDecoration(labelText: 'Age',prefixIcon: Icon(Icons.lock),),
-              onChanged: (val){
-                age=val;
-              },
-            ),
-          ),
           RaisedButton(
             padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
             onPressed: (){

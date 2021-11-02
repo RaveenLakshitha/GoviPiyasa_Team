@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:govi_piyasa/shop.dart';
+
+import 'Delivery.dart';
+import 'Forum/create_post.dart';
+import 'Forum/list_post.dart';
+import 'Forum/post_details.dart';
+import 'home.dart';
 
 class BottomBar extends StatelessWidget {
   @override
@@ -27,10 +34,19 @@ class BottomBar extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          Icon(Icons.home, color: Color(0xFFEF7532)),
-                          Icon(Icons.person_outline, color: Color(0xFF676E79))
+                          GestureDetector(
+                            onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (context) =>MyHomePage())); },
+                            child: Icon(Icons.home, color: Color(0xFFEF7532)),
+                          ),
+
+                          GestureDetector(
+                            onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (context) =>PostDetail(18))); },
+                            child: Icon(Icons.person_outline, color: Color(0xFF676E79)),
+                          ),
                         ],
+
                       )
+
                   ),
                   Container(
                       height: 50.0,
@@ -38,8 +54,14 @@ class BottomBar extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          Icon(Icons.search, color: Color(0xFF676E79)),
-                          Icon(Icons.shopping_basket, color: Color(0xFF676E79)),
+                          GestureDetector(
+                            onTap: () { Navigator.of(context).push(MaterialPageRoute(builder: (context) =>CreatePost())); },
+                           child: Icon(Icons.search, color: Color(0xFF676E79)),
+                          ),
+                          GestureDetector(
+                            onTap: () {  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ListPost())); },
+                            child: Icon(Icons.shopping_basket, color: Color(0xFF676E79)),
+                          ),
                         ],
                       )
                   ),

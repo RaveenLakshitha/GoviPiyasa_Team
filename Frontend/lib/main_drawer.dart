@@ -5,6 +5,7 @@ import 'package:govi_piyasa/screeen/Cart.dart';
 import 'package:govi_piyasa/sellerlist.dart';
 import 'package:govi_piyasa/shop.dart';
 
+import 'Delivery.dart';
 import 'feedback.dart';
 
 
@@ -52,7 +53,7 @@ class MainDrawer extends StatelessWidget{
 
 
                   ),
-                  Text('Ashen Nilura' ,style:TextStyle(fontSize: 22,color:Colors.white),
+                  Text('Govipiyasa' ,style:TextStyle(fontSize: 22,color:Colors.white),
                   ),
                   Text('ashennilura@gmail.com' ,style:TextStyle(color:Colors.white),)
                 ],
@@ -65,7 +66,7 @@ class MainDrawer extends StatelessWidget{
             title:Text('Delivery', style:TextStyle(fontSize: 12,),
             ),
             onTap:(){
-              //Navigator.of(context).push(MaterialPageRoute(builder: (context) =>MyApp()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>Delivery()));
             },
           ),
           ListTile(
@@ -74,14 +75,6 @@ class MainDrawer extends StatelessWidget{
             ),
             onTap:(){
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) =>CartApp()));
-            } ,
-          ),
-          ListTile(
-            leading: Icon(Icons.admin_panel_settings_rounded ),
-            title:Text('Userlist', style:TextStyle(fontSize: 12,),
-            ),
-            onTap:(){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>SellerList()));
             } ,
           ),
           ListTile(
@@ -98,6 +91,14 @@ class MainDrawer extends StatelessWidget{
             ),
             onTap:(){
               Navigator.of(context).push(MaterialPageRoute(builder: (context) =>ReachUs()));
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.lightbulb_rounded),
+            title:Text('Experts', style:TextStyle(fontSize: 12,),
+            ),
+            onTap:(){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>SellerList()));
             },
           ),
 
