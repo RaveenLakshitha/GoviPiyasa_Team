@@ -1,22 +1,17 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var bcrypt = require("bcrypt");
-var userSchema1 = new Schema({
+var userSchema2 = new Schema({
   name: {
     type: String,
     require: true,
   },
-
-  designation: {
+  type: {
     type: String,
     require: true,
   },
   contact: {
     type: Number,
-    require: true,
-  },
-  location: {
-    type: String,
     require: true,
   },
   password: {
@@ -25,7 +20,7 @@ var userSchema1 = new Schema({
   },
 });
 
-userSchema1.pre("save", function (next) {
+userSchema2.pre("save", function (next) {
   var user = this;
   if (this.isModified("password") || this.isNew) {
     bcrypt.genSalt(10, function (err, salt) {
@@ -45,7 +40,7 @@ userSchema1.pre("save", function (next) {
   }
 });
 
-userSchema1.methods.comparePassword = function (passw, cb) {
+userSchema2.methods.comparePassword = function (passw, cb) {
   bcrypt.compare(passw, this.password, function (err, isMatch) {
     if (err) {
       return cb(err);
@@ -54,4 +49,4 @@ userSchema1.methods.comparePassword = function (passw, cb) {
   });
 };
 
-module.exports = mongoose.model("expert", userSchema1);
+module.exports = mongoose.model("delivery", userSchema2);
