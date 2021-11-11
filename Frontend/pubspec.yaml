@@ -34,6 +34,13 @@ dependencies:
   firebase_storage: any
   firebase_messaging: ^5.1.4
   flutter_widget_from_html_core: ^0.2.0
+  flutter_staggered_grid_view: ^0.3.3
+  transparent_image: ^1.0.0
+  shared_preferences: ^0.5.8
+  image_picker: ^0.6.5+2
+  intl: ^0.16.1
+  carousel_slider: ^3.0.0
+  flutter_icons: ^1.1.0
 
 
 
@@ -64,6 +71,11 @@ flutter:
     - images/newappicon.png
     - images/leaf.png
     - images/leaf2.png
+    - images/govipiyasa_logo.png
+    - images/profile.png
+    - images/shop.jpg
+    - images/architect.jpg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
