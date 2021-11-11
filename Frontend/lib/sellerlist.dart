@@ -23,7 +23,7 @@ class _SellerListState extends State<SellerList> {
  // https://mongoapi3.herokuapp.com/users
 /*
 
-  onTap:() {lanchwhatsapp(number: "+94${post['contact']}", message: "hello"); },
+
 
 */
 final url="https://mongoapi3.herokuapp.com/experts";
@@ -75,8 +75,9 @@ final post=_postsJson[index];
                  ListTile(
                   leading: Image.network("${post['location']}"),
                   title:  Text("Name:${post['name']}"),
-                  subtitle: Text("Contact:+94${post['contact']}"),
-                   trailing: Text(post.dateTime.month.toString()),
+                  subtitle: Text("Designation:${post['designation']}"),
+                 trailing: Text("${post['contact']}"),
+                 //  onLongPress:() {lanchwhatsapp(number: "+94${post['contact']}", message: "hello"); },
                 ),
 
 

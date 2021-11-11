@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:govi_piyasa/home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'Auth/authservice.dart';
 import 'package:http/http.dart' as http;
 
@@ -13,16 +14,20 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
 
-  var name,password,token;
+  var name,password,token,phone;
 
   @override
   void initState() {
     super.initState();
-
   }
 
   @override
   Widget build(BuildContext context) {
+
+    void setData(emailvalue) async{
+      SharedPreferences pref= await SharedPreferences.getInstance();
+      pref.setString("email",emailvalue);
+    }
     return Scaffold(
         body: SingleChildScrollView(
           child: Container(
@@ -71,13 +76,18 @@ class _SignUpState extends State<SignUp> {
                             decoration: InputDecoration(
                               labelText: 'PhoneNo',
                               prefixIcon: Icon(Icons.lock),
-                            ),),
+                            ),
+                              onChanged: (val){
+                                phone=val;
+                              }),
                         ),
                         SizedBox(height: 20),
                         RaisedButton(
                           padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
                           onPressed:(){
+
                             AuthService().addUser(name,password).then((val){
+                           setData(name);
                               Fluttertoast.showToast(
                                 msg: "successfuly registered",
                                 toastLength: Toast.LENGTH_SHORT,
@@ -89,7 +99,7 @@ class _SignUpState extends State<SignUp> {
                               Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage()));
                             });
                           },
-                          child: Text('register',
+                          child: Text('Register',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20.0,

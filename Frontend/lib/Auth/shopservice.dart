@@ -18,4 +18,18 @@ class ShopService{
         options: Options(contentType: Headers.formUrlEncodedContentType)
     );
   }
+  addArchitect(AName,designation,phoneNo,about,team) async {
+    return await dio.post('https://mongoapi3.herokuapp.com/addarchitect',data:{
+      "name":AName,
+      "designation":designation,
+      "contact":phoneNo,
+      "about":about,
+      "team":team,
+      "password":team,
+
+
+    },
+        options: Options(contentType: Headers.formUrlEncodedContentType)
+    );
+  }
 }

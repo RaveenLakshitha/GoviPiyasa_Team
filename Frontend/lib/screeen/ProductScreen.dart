@@ -10,8 +10,8 @@ class ProductScreen extends StatelessWidget {
   ProductScreen(this._valueSetter);
 
   List<ProductModel> products = [
-    ProductModel("Mic", 50),
-    ProductModel("LED Monitor", 100),
+    ProductModel("Seeds", 50),
+    ProductModel("Plants", 100),
     ProductModel("Mouse", 5),
     ProductModel("Keyboard", 10),
     ProductModel("Speaker", 50),

@@ -1,15 +1,12 @@
 
-
 import 'package:flutter/material.dart';
+import 'package:govi_piyasa/information/homescreen.dart';
 import 'package:govi_piyasa/screeen/Cart.dart';
 import 'package:govi_piyasa/sellerlist.dart';
 import 'package:govi_piyasa/shop.dart';
-
 import 'Delivery.dart';
+import 'expertlist.dart';
 import 'feedback.dart';
-
-
-
 
 class MainDrawer extends StatelessWidget{
 
@@ -45,7 +42,7 @@ class MainDrawer extends StatelessWidget{
                         shape: BoxShape.circle,
                         image: DecorationImage(
 
-                            image: AssetImage('images/newappicon.png'),
+                            image: AssetImage('images/govipiyasa_logo.png'),
                             fit:BoxFit.fill
                         )
 
@@ -101,7 +98,22 @@ class MainDrawer extends StatelessWidget{
               Navigator.of(context).push(MaterialPageRoute(builder: (context) =>SellerList()));
             },
           ),
-
+          ListTile(
+            leading: Icon(Icons.lightbulb_rounded),
+            title:Text('ExpertList', style:TextStyle(fontSize: 12,),
+            ),
+            onTap:(){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>expert()));
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.assignment),
+            title:Text('Information', style:TextStyle(fontSize: 12,),
+            ),
+            onTap:(){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>Grid()));
+            },
+          ),
 
         ],
       ),

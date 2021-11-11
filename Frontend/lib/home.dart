@@ -5,9 +5,14 @@ import 'package:flutter_carousel_slider/carousel_slider.dart';
 import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
 import 'package:flutter_carousel_slider/carousel_slider_transforms.dart';
 import 'package:govi_piyasa/login_screen.dart';
+import 'package:govi_piyasa/profile.dart';
 import 'package:govi_piyasa/screeen/Cart.dart';
 
 import 'package:govi_piyasa/shop.dart';
+import 'package:intl/intl.dart';
+import 'architecture/architecture.dart';
+import 'architecture/services_dashboard.dart';
+import 'architecture/widget_screen.dart';
 import 'bottombar.dart';
 import 'item_page.dart';
 import 'main_drawer.dart';
@@ -30,19 +35,37 @@ class _MyHomePageState extends State<MyHomePage>
     _tabController = TabController(length: 3, vsync: this);
   }
   Future getimgfromFirebase() async {
+
     var firestore = Firestore.instance;
     QuerySnapshot qn =
     await firestore.collection("Carousel_images").getDocuments();
     return qn.documents;
+
   }
   @override
   Widget build(BuildContext context) {
+    String _message;
+    DateTime now = DateTime.now();
+    String _currentHour = DateFormat('kk').format(now);
+    int hour = int.parse(_currentHour);
+
+    setState(
+          () {
+        if (hour >= 5 && hour < 12) {
+          _message = 'Good Morning';
+        } else if (hour >= 12 && hour <= 17) {
+          _message = 'Good Afternoon';
+        } else {
+          _message = 'Good Evening';
+        }
+      },
+    );
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightGreen,
         elevation: 0.0,
         centerTitle: true,
-        title: Text('Dashboard',
+        title: Text(_message,
             style: TextStyle(
                 fontFamily: 'Varela',
                 fontSize: 20.0,
@@ -52,19 +75,19 @@ class _MyHomePageState extends State<MyHomePage>
             icon: Icon(Icons.notifications_none, color: Color(0xFF545D68)),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) =>Messaging_Widget()));
-            },
+
+              },
           ),
 
           PopupMenuButton<int>(
               onSelected: (item)=>onSelected(context,item),
               itemBuilder: (context)=>[
-
                 PopupMenuItem<int>(
                   value:0,
                   child:Row(
                     children:[
                       Icon(Icons.account_balance_rounded,color:Colors.blue),
-                      Text("Shop create"),
+                      Text("Services"),
                     ],
 
                   ),
@@ -73,6 +96,15 @@ class _MyHomePageState extends State<MyHomePage>
                 ),
                 PopupMenuItem<int>(
                   value:1,
+                  child:Row(
+                    children:[
+                      Icon(Icons.account_box,color:Colors.blue),
+                      Text("Profile"),
+                    ],
+                  ),
+                ),
+                PopupMenuItem<int>(
+                  value:2,
                   child:Row(
                     children:[
                       Icon(Icons.logout,color:Colors.blue),
@@ -183,7 +215,9 @@ class _MyHomePageState extends State<MyHomePage>
           )
         ],
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {},
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) =>Service()));
+      },
         backgroundColor: Color(0xFFF17532),
         child: Icon(Icons.fastfood),
       ),
@@ -195,8 +229,10 @@ class _MyHomePageState extends State<MyHomePage>
  void onSelected(BuildContext context, int item) {
     switch(item){
       case 0:
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) =>Shop()));break;
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) =>WidgetScreen()));break;
       case 1:
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) =>Profile()));break;
+      case 2:
         Navigator.of(context).push(MaterialPageRoute(builder: (context) =>Login()));break;
     }
   }
