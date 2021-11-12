@@ -1,21 +1,27 @@
 {
-  "name": "gp_backend",
+  "name": "flutterauth",
   "version": "1.0.0",
-  "description": "",
+  "description": "Authentication system for flutter apps",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production nodemon server.js",
-    "dev": "nodemon server"
+    "start": "cross-env NODE_ENV=production node server",
+    "dev": "cross-env NODE_ENV=development nodemon server"
   },
-  "author": "gp_team",
-  "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^2.0.13"
-  },
+  "author": "Rajayogan",
+  "license": "MIT",
   "dependencies": {
-    "dotenv": "^10.0.0",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "connect-mongo": "^3.2.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^6.0.10"
+    "jwt-simple": "^0.5.6",
+    "mongoose": "^5.9.20",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0"
   }
 }
