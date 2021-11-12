@@ -81,6 +81,13 @@ class _DeliveryState extends State<Delivery> {
           itemBuilder: (BuildContext context, index) {
             final post = _postsJson[index];
             return Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(40), // if you need this
+                side: BorderSide(
+                  color: Colors.grey.withOpacity(0.2),
+                  width: 1,
+                ),
+              ),
               color: Colors.green,
               elevation: 10,
               child: Padding(
@@ -94,11 +101,15 @@ class _DeliveryState extends State<Delivery> {
                     leading: Image.network("${post['location']}"),
                     title: Text("Name:${post['name']}"),
                     subtitle: Text("Contact:+94${post['contact']}"),
-                    trailing: Text("Type:${post['type']}"),
+
                     onTap: () {
                       lanchwhatsapp(
                           number: "+94${post['contact']}", message: "hello");
                     },
+                  ),
+                  ListTile(
+                    title: Text("Name:${post['type']}"),
+                    trailing: Text('Metadata'),
                   ),
                 ]),
               ),

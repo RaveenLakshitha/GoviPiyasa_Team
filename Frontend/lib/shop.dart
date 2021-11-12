@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:govi_piyasa/Auth/shopservice.dart';
+import 'package:govi_piyasa/shop/additem.dart';
 import 'package:http/http.dart' as http;
 class Shop extends StatefulWidget {
 
@@ -156,6 +157,7 @@ class _ShopState extends State<Shop> {
                                 textColor: Colors.white,
                                 fontSize: 16.0,
                               );
+                              Navigator.push(context, MaterialPageRoute(builder: (context) =>Addproduct()));
 
                             });
                           },

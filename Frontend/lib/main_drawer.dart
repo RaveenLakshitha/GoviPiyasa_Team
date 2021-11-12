@@ -4,6 +4,7 @@ import 'package:govi_piyasa/information/homescreen.dart';
 import 'package:govi_piyasa/screeen/Cart.dart';
 import 'package:govi_piyasa/sellerlist.dart';
 import 'package:govi_piyasa/shop.dart';
+import 'package:govi_piyasa/shop/additem.dart';
 import 'Delivery.dart';
 import 'expertlist.dart';
 import 'feedback.dart';
@@ -111,7 +112,7 @@ class MainDrawer extends StatelessWidget{
             title:Text('Information', style:TextStyle(fontSize: 12,),
             ),
             onTap:(){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>Grid()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>Addproduct()));
             },
           ),
 

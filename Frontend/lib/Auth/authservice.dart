@@ -9,7 +9,7 @@ class AuthService {
   login(name, password) async {
     try {
 
-      return await dio.post('https://govipiyasa.herokuapp.com/authenticate',
+      return await dio.post('https://mongoapi3.herokuapp.com/authenticate',
           data: {"name": name, "password": password},
           options: Options(contentType: Headers.formUrlEncodedContentType));
 
@@ -26,7 +26,7 @@ class AuthService {
   }
 
   addUser(name, password) async {
-    return await dio.post('https://govipiyasa.herokuapp.com/adduser',
+    return await dio.post('https://mongoapi3.herokuapp.com/adduser',
         data: {"name": name, "password": password},
         options: Options(contentType: Headers.formUrlEncodedContentType));
   }

@@ -89,10 +89,7 @@ class _MyHomePageState extends State<MyHomePage>
                       Icon(Icons.account_balance_rounded,color:Colors.blue),
                       Text("Services"),
                     ],
-
                   ),
-
-
                 ),
                 PopupMenuItem<int>(
                   value:1,
@@ -127,10 +124,8 @@ class _MyHomePageState extends State<MyHomePage>
               future: getimgfromFirebase(),
               builder: (_, snapshot) {
                 return CarouselSlider.builder(
-
                   slideBuilder: (index){
                     DocumentSnapshot sliderimage=snapshot.data[index];
-
                     return Container(
                         child: GestureDetector(
 
