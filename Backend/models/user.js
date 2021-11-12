@@ -1,69 +1,45 @@
-const mongoose = require("mongoose");
-
-const userSchema = new mongoose.Schema(
-  {
-    FirstName: {
-      type: String,
-      min: 3,
-      max: 20,
-      required: true,
-      trim: true,
-    },
-    LastName: {
-      type: String,
-      min: 3,
-      max: 20,
-      required: true,
-      trim: true,
-    },
-    email: {
-      type: String,
-      unique: true,
-      required: true,
-      trim: true,
-      lowercase: true,
-      match: [
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-        "Please add a valid email",
-      ],
+var mongoose = require('mongoose')
+var Schema = mongoose.Schema;
+var bcrypt = require('bcrypt')
+var userSchema = new Schema({
+    name: {
+        type: String,
+        require: true
     },
     password: {
-      type: String,
-      required: [true, "Please add a Password"],
-      min: 6,
-      select: false,
-    },
-    address: {
-      type: String,
-      required: [true, "Please add a Address"],
-      min: 6,
-      max: 10,
-      select: false,
-    },
-    city: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    contactNumber: {
-      type: String,
-      required: true,
-      minlength: 10,
-      trim: true,
-    },
-    role: {
-      type: String,
-      enum: ["admin", "user"],
-      default: "user",
-    },
-    profilePicture: { type: String },
-    interestedCategories: {
-      type: String,
-      enum: ["flowergardening", "vegetablegardening", "economicalcrops"],
-    },
-    createdDate: { type: Date },
-  },
-  { timeStamps: true }
-);
+        type: String,
+        require: true
+    }
+})
 
-module.exports = mongoose.model("User", userSchema);
+userSchema.pre('save', function (next) {
+    var user = this;
+    if (this.isModified('password') || this.isNew) {
+        bcrypt.genSalt(10, function (err, salt) {
+            if (err) {
+                return next(err)
+            }
+            bcrypt.hash(user.password, salt, function (err, hash) {
+                if (err) {
+                    return next(err)
+                }
+                user.password = hash;
+                next()
+            })
+        })
+    }
+    else {
+        return next()
+    }
+})
+
+userSchema.methods.comparePassword = function (passw, cb) {
+    bcrypt.compare(passw, this.password, function (err, isMatch) {
+        if(err) {
+            return cb(err)
+        }
+        cb(null, isMatch)
+    })
+}
+
+module.exports = mongoose.model('User', userSchema)

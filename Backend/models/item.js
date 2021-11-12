@@ -1,46 +1,29 @@
-const mongoose = require("mongoose");
-
-const itemSchema = mongoose.Schema({
-  productName: {
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
+var bcrypt = require("bcrypt");
+var userSchema5 = new Schema({
+  itemname: {
     type: String,
-    required: true,
-    trim: true,
+    require: true,
+  },
+
+  description: {
+    type: String,
+    require: true,
   },
   price: {
     type: Number,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-    trim: true,
+    require: true,
   },
   quantity: {
     type: Number,
-    required: true,
+    require: true,
   },
-  productPictures: [
-    {
-      img: { type: String },
-    },
-  ],
-  reviews: [
-    {
-      userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-      review: String,
-    },
-  ],
   category: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Category",
-    required: true,
+    type: String,
+    require: true,
   },
-  createdBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-  updateAt: Date,
+
 });
 
-module.exports = mongoose.model("Item", itemSchema);
+module.exports = mongoose.model("items", userSchema5);
