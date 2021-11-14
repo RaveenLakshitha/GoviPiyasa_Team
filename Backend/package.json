@@ -1,22 +1,22 @@
 {
-  "name": "gp_backend",
+  "name": "blog-server",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production nodemon server.js",
-    "dev": "nodemon server"
+    "start": "node index",
+    "dev": "nodemon index"
   },
-  "author": "gp_team",
+  "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^2.0.13"
-  },
   "dependencies": {
-    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "mongoose": "^6.0.10",
-    "morgan": "^1.10.0"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.16",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.4"
+  },
+  "engines": {
+    "node": "8.x"
   }
 }
