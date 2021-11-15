@@ -1,19 +1,14 @@
-import {Modal} from 'react-bootstrap';
+import { Modal } from "react-bootstrap";
 
-const UserModal = (show) => {
-
+const UserModal = (props) => {
   return (
     <div>
-      <Modal show={show}>
-        <Modal.Header closeButton>
-          Title
-        </Modal.Header>
-        <Modal.Body>
-          Modal body
-        </Modal.Body>
+      <Modal show={props.show} onHide={props.onHide}>
+        <Modal.Header closeButton>Title</Modal.Header>
+        <Modal.Body>Modal body</Modal.Body>
       </Modal>
     </div>
   );
-}
- 
+};
+
 export default UserModal;
