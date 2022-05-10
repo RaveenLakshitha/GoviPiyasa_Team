@@ -5,6 +5,7 @@ const information = mongoose.Schema({
     type: String,
     required: true,
   },
+  slug: String,
   Category: {
     type: String,
     required: true,

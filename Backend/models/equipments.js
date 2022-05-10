@@ -29,5 +29,6 @@ const equipmentSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Shop",
   },
+  slug: String,
 });
 module.exports = mongoose.model("Equipment", equipmentSchema);

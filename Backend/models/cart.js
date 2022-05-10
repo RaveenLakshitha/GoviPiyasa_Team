@@ -8,7 +8,7 @@ const cartSchema = mongoose.Schema(
     },
     cartItems: [
       {
-        product: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        product: { type: mongoose.Schema.Types.ObjectId, ref: "Item" },
         quantity: {
           type: Number,
         },
@@ -18,8 +18,12 @@ const cartSchema = mongoose.Schema(
         },
       },
     ],
+    cartTotalPrice: {
+      type: Number,
+      //required: true,
+    },
   },
   { timeStamps: true }
 );
-
+cartSchema.index({ expireAt: 1 }, { expireAfterSeconds: 5 });
 module.exports = mongoose.model("Cart", cartSchema);
