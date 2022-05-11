@@ -1,0 +1,128 @@
+name: govi_piyasa
+description: Ecommerce Application
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  google_fonts: ^1.1.0
+  http: ^0.12.1
+  logger: ^0.9.1
+  flutter_facebook_login: ^3.0.0
+  flutter_secure_storage: ^3.3.3
+  image_picker: ^0.6.7+4
+  json_annotation:
+  dio: any
+  fluttertoast:
+  url_launcher: ^5.4.1
+  font_awesome_flutter: ^9.2.0
+
+  flutter_widget_from_html_core: ^0.2.0
+  flutter_carousel_slider:
+  intl: ^0.16.1
+  carousel_slider: ^3.0.0
+  flutter_icons: ^1.1.0
+  provider: ^4.0.4
+  webview_flutter: ^2.0.12
+  google_maps_flutter: ^0.5.32
+  share: ^2.0.4
+  community_material_icon: ^5.4.55
+  shared_preferences:
+  syncfusion_flutter_pdf: ^18.4.47-beta
+  path_provider: ^1.6.28
+  open_file: ^3.1.0
+  introduction_screen: ^1.0.9
+  search_map_place: ^0.3.0
+  geocoder: ^0.2.1
+  geolocator: ^6.0.0+4
+  universal_html: ^1.2.4
+
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/plants.jpg
+    - assets/logo1.png
+    - assets/login.jpg
+    - assets/welcome.jpg
+    - assets/newappicon.png
+    - assets/leaf.png
+    - assets/leaf2.png
+    - assets/govipiyasa_logo.png
+    - assets/profile.png
+    - assets/shop.jpg
+    - assets/architect.jpg
+    - assets/flowers.png
+    - assets/forum.png
+    - assets/garden.png
+    - assets/expert.png
+    - assets/about.jpg
+    - assets/glossy-e-commerce.png
+    - assets/splash_2.png
+    - assets/splash_3.png
+    - assets/splash_1.png
+    - assets/3.png
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware.
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
