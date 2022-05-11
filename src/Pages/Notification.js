@@ -22,8 +22,11 @@ const Notification = () => {
         </div>
       </div>
       
-    <div className="row">
-      <Card className="m-4 w-75">
+    <div>
+      <Row>
+        <Col>
+        <h4>Uploaded notifications</h4>
+        <Card className="m-4 w-75">
         <Card.Body>
           <Card.Title>New Update</Card.Title>
           <Card.Text>
@@ -36,7 +39,27 @@ const Notification = () => {
               Discard
           </Button>
         </Card.Body>
-      </Card>
+        </Card>
+      </Col>
+
+      <Col>
+        <h4>Received notifications</h4>
+        <Card className="m-4 w-75">
+        <Card.Body>
+          <Card.Title>New Update</Card.Title>
+          <Card.Text>
+            With supporting text below as a natural lead-in to additional content.
+          </Card.Text>
+          <Button size="sm" variant="secondary" color="white" float-end>
+              Publish
+          </Button>
+          <Button size="sm" variant="secondary" color="white" className="m-2">
+              Discard
+          </Button>
+        </Card.Body>
+        </Card>
+      </Col>
+      </Row>
       </div>
     </div>
   );

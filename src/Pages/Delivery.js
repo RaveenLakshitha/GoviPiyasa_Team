@@ -2,7 +2,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import DeliveryForm from './DeliveryForm';
+import DeliveryForm from '.Components/DeliveryForm';
 import { useState } from 'react';
 
 const Delivery = () => {

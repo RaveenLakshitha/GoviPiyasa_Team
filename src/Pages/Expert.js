@@ -2,7 +2,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import ExpertForm from './ExpertForm';
+import ExpertForm from './Components/ExpertForm';
 import { useState } from 'react';
 
 const Expert = () => {
