@@ -12,6 +12,7 @@ import Setting from "./Setting";
 import Expert from "./Expert";
 import Notification from "./Notification";
 import Profile from "./Profile";
+import Chart from "./Chart";
 
 const Home = () => {
   return (
@@ -31,6 +32,7 @@ const Home = () => {
           <Route path="/setting"><Setting/></Route>
           <Route path="/notification"><Notification/></Route>
           <Route path="/myprofile"><Profile/></Route>
+          <Route path="/chart"><Chart/></Route>
         </Switch>
       </div>
     </Router>     

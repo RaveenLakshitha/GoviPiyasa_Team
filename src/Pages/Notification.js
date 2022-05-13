@@ -1,6 +1,7 @@
-import { Card, Button } from "react-bootstrap";
-import NotificationForm from "./NotificationForm";
+import { Card, Button,Row,Col} from "react-bootstrap";
+import NotificationForm from "../Components/NotificationForm";
 import { useState } from "react";
+
 
 const Notification = () => {
 

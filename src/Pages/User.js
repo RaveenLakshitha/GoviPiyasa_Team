@@ -2,8 +2,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
-import UserModal from "./Components/UserModal";
-import ConfirmMessage from "./Components/ConfirmMessage";
+import UserModal from "../Components/UserModal";
+import ConfirmMessage from "../Components/ConfirmMessage";
 
 const User = () => {
   const [showAdd, setShowAdd] = useState(false);
