@@ -74,6 +74,9 @@ const Forum = () => {
           } else if (item.name.toLowerCase().includes(search.toLowerCase())) {
             return item;
           }
+           else {
+                  return false;
+                }
         })
         .map((item) => {
           return (
@@ -103,6 +106,8 @@ const Forum = () => {
                   item.title.toLowerCase().includes(search.toLowerCase())
                 ) {
                   return item;
+                } else {
+                  return false;
                 }
               })
               .map((item) => {

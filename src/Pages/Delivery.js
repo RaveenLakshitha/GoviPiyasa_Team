@@ -49,9 +49,7 @@ const Delivery = () => {
   const handleShow = () => setShow(true);
   const getProductData = async () => {
     try {
-      const data = await axios.get(
-        "  https://mongoapi3.herokuapp.com/delivery"
-      );
+      const data = await axios.get("https://mongoapi3.herokuapp.com/delivery");
       console.log(data.data);
       setProduct(data.data);
     } catch (e) {
@@ -62,6 +60,26 @@ const Delivery = () => {
   useEffect(() => {
     getProductData();
   }, []);
+  const removeData = async (id) => {
+    if (
+      window.confirm("Are you sure that you wanted to delete that user record")
+    ) {
+      const response = await axios.delete(
+        `https://mongoapi3.herokuapp.com/delivery/${id}`
+      );
+      if (response.status === 200) {
+        console.log("id" + id);
+        getProductData();
+      }
+    }
+
+    // console.log("id" + id);
+    // axios.delete(`${URL}/${id}`).then((res) => {
+    //   const del = deliveries.filter((employee) => id !== employee.id);
+    //   setDelivery(del);
+    // });
+  };
+
   return (
     <div className="App1">
       <h1>Delivery</h1>
@@ -104,11 +122,11 @@ const Delivery = () => {
         <Table className={classes.table} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell>ID</StyledTableCell>
               <StyledTableCell>Name</StyledTableCell>
               <StyledTableCell>Mode</StyledTableCell>
 
               <StyledTableCell>Contact</StyledTableCell>
+              <StyledTableCell>Operation</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -117,9 +135,11 @@ const Delivery = () => {
                 if (search === "") {
                   return item;
                 } else if (
-                  item.title.toLowerCase().includes(search.toLowerCase())
+                  item.name.toLowerCase().includes(search.toLowerCase())
                 ) {
                   return item;
+                } else {
+                  return false;
                 }
               })
               .map((item) => {
@@ -135,7 +155,10 @@ const Delivery = () => {
                         fontSize="small"
                         style={{ marginRight: "10px" }}
                       />
-                      <DeleteIcon fontSize="small" />
+                      <DeleteIcon
+                        fontSize="small"
+                        onClick={() => removeData(item._id)}
+                      />
                     </StyledTableCell>
                   </StyledTableRow>
                 );

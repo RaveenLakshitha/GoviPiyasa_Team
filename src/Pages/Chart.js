@@ -22,7 +22,7 @@ const Chart = () => {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <h1>Socail Media Users</h1>
+      <h1>Charts</h1>
       <div className="Chart">
         <PieChart width={300} height={300}>
           <Pie

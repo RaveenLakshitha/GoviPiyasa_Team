@@ -1,21 +1,25 @@
-import './App.css';
-import Sidebar from './Components/Sidebar';
-import Header from './Components/Header';
-import Footer from './Components/Footer';
-import Home from './Pages/Home';
+import "./App.css";
+import Sidebar from "./Components/Sidebar";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import Home from "./Pages/Home";
 
 function App() {
   return (
     <div className="App">
       <div className="row">
-        <Header/>
+        <Header />
       </div>
       <div className="row">
-        <div className="col-2"><Sidebar/></div>
-        <div className="col-sm-10 p-2"><Home/></div>
+        <div className="col-2">
+          <Sidebar />
+        </div>
+        <div className="col-sm-10 p-2">
+          <Home />
+        </div>
       </div>
       <div className="row">
-        <Footer/>
+        <Footer />
       </div>
     </div>
   );
