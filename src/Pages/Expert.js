@@ -44,13 +44,19 @@ const Expert = () => {
   const [product, setProduct] = useState([]);
   const [search, setSearch] = useState("");
   const [show, setShow] = useState(false);
-
+  const [editId, setEditId] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const editData = (data) => {
+    setEditId(data);
+    handleShow();
+  };
+
   const getProductData = async () => {
     try {
       const data = await axios.get("https://mongoapi3.herokuapp.com/experts");
-      console.log(data.data);
+      console.log(data.data.length);
       setProduct(data.data);
     } catch (e) {
       console.log(e);
@@ -97,7 +103,7 @@ const Expert = () => {
         >
           Add Experts
         </Button>
-        <ExpertForm show={show} handleClose={handleClose} />
+        <ExpertForm show={show} id={editId} handleClose={handleClose} />
       </div>
       {/* {product
         .filter((item) => {
@@ -153,6 +159,7 @@ const Expert = () => {
                       <EditIcon
                         fontSize="small"
                         style={{ marginRight: "10px" }}
+                        onClick={() => editData(item._id)}
                       />
                       <DeleteIcon
                         fontSize="small"

@@ -12,58 +12,52 @@ import Setting from "./Setting";
 import Expert from "./Expert";
 import Notification from "./Notification";
 import Profile from "./Profile";
-import Chart from "./Chart";
 
 const Home = () => {
   return (
     <Router>
-      <div>
-        <Switch>
-          <Route exact path="/">
-            <Dashboard />
-          </Route>
+      <Switch>
+        <Route exact path="/">
+          <Dashboard />
+        </Route>
 
-          <Route path="/user">
-            <User />
-          </Route>
-          <Route path="/shop">
-            <Shop />
-          </Route>
-          <Route path="/expert">
-            <Expert />
-          </Route>
-          <Route path="/items">
-            <Items />
-          </Route>
-          <Route path="/orders">
-            <Orders />
-          </Route>
-          <Route path="/architect">
-            <Architect />
-          </Route>
-          <Route path="/forum">
-            <Forum />
-          </Route>
-          <Route path="/delivery">
-            <Delivery />
-          </Route>
-          <Route path="/information">
-            <Information />
-          </Route>
-          <Route path="/setting">
-            <Setting />
-          </Route>
-          <Route path="/notification">
-            <Notification />
-          </Route>
-          <Route path="/myprofile">
-            <Profile />
-          </Route>
-          <Route path="/chart">
-            <Chart />
-          </Route>
-        </Switch>
-      </div>
+        <Route path="/user">
+          <User />
+        </Route>
+        <Route path="/shop">
+          <Shop />
+        </Route>
+        <Route path="/expert">
+          <Expert />
+        </Route>
+        <Route path="/items">
+          <Items />
+        </Route>
+        <Route path="/orders">
+          <Orders />
+        </Route>
+        <Route path="/architect">
+          <Architect />
+        </Route>
+        <Route path="/forum">
+          <Forum />
+        </Route>
+        <Route path="/delivery">
+          <Delivery />
+        </Route>
+        <Route path="/information">
+          <Information />
+        </Route>
+        <Route path="/setting">
+          <Setting />
+        </Route>
+        <Route path="/notification">
+          <Notification />
+        </Route>
+        <Route path="/myprofile">
+          <Profile />
+        </Route>
+      </Switch>
     </Router>
   );
 };

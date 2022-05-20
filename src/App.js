@@ -3,6 +3,7 @@ import Sidebar from "./Components/Sidebar";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import Home from "./Pages/Home";
+import { ToastContainer } from "react-bootstrap";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <div className="row">
         <Header />
       </div>
+      <ToastContainer />
       <div className="row">
         <div className="col-2">
           <Sidebar />

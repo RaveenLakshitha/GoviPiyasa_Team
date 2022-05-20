@@ -43,11 +43,14 @@ const User = () => {
   const classes = useStyles();
   const [product, setProduct] = useState([]);
   const [search, setSearch] = useState("");
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const getProductData = async () => {
     try {
       const data = await axios.get("https://mongoapi3.herokuapp.com/experts");
-      console.log(data.length);
+      console.log(data.data);
       setProduct(data.data);
     } catch (e) {
       console.log(e);
@@ -76,7 +79,7 @@ const User = () => {
 
   return (
     <div className="App1">
-      <h1>Users</h1>
+      <h1>Expert</h1>
       <input
         type="text"
         placeholder="Search here"
@@ -85,7 +88,17 @@ const User = () => {
         }}
       />
 
-      <div className="col-8"></div>
+      <div className="col-8">
+        <Button
+          variant="success"
+          className="float-sm-end m-3"
+          size="sm"
+          onClick={handleShow}
+        >
+          Add Experts
+        </Button>
+        <ExpertForm show={show} handleClose={handleClose} />
+      </div>
       {/* {product
         .filter((item) => {
           if (search == "") {

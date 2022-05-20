@@ -9,7 +9,7 @@ import ForumIcon from "@mui/icons-material/Forum";
 import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 import InfoIcon from "@mui/icons-material/Info";
 import SettingsIcon from "@mui/icons-material/Settings";
-import AddChartIcon from "@mui/icons-material/Addchart";
+
 export const SidebarData = [
   {
     title: "Dashboard",
@@ -51,11 +51,7 @@ export const SidebarData = [
     icon: <ForumIcon />,
     link: "/forum",
   },
-  {
-    title: "Chart",
-    icon: <AddChartIcon />,
-    link: "/chart",
-  },
+
   {
     title: "Delivery",
     icon: <DeliveryDiningIcon />,

@@ -1,16 +1,42 @@
 import { Form, Button, Col, Row } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 const ExpertForm = (props) => {
   const [contact, setContact] = useState("");
   const [name, setName] = useState("");
   const [designation, setDesig] = useState("");
   const [location, setLoc] = useState("");
-
+  // const [data, setData] = useState([]);
+  // useEffect(async () => {
+  //   let result = await fetch(
+  //     "https://mongoapi3.herokuapp.com/" + props.match.params.id
+  //   );
+  //   result = await result.json();
+  //   setData(result);
+  // });
+  const id = props.id;
+  useEffect(() => {
+    console.log("got it");
+    if (id) {
+      console.log(id);
+      getSingleUser(id);
+    }
+  }, [id]);
+  const getSingleUser = async (id) => {
+    const response = await axios.get(`https://mongoapi3.herokuapp.com/${id}`);
+    if (response.status === 200) {
+      //setState({ ...response.data[0] });
+      setName(response.data.name);
+      setContact(response.data.contact);
+      setDesig(response.data.designation);
+      setLoc(response.data.location);
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("mama wada");
+    // if(!)
     axios
       .post("https://mongoapi3.herokuapp.com/addexpert", {
         name: name,
