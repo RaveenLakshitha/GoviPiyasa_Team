@@ -9,9 +9,9 @@ const Sidebar = () => {
           return (
             <li
               key={key}
-              onClick={(event) => {
-                event.preventDefault();
+              onClick={(e) => {
                 window.location.pathname = val.link;
+                e.preventDefault();
               }}
               className="row"
             >

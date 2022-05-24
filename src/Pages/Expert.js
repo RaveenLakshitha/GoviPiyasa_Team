@@ -56,7 +56,7 @@ const Expert = () => {
   const getProductData = async () => {
     try {
       const data = await axios.get("https://mongoapi3.herokuapp.com/experts");
-      console.log(data.data.length);
+      console.log(data);
       setProduct(data.data);
     } catch (e) {
       console.log(e);

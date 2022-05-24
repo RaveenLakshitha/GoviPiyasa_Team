@@ -14,7 +14,7 @@ export const SidebarData = [
   {
     title: "Dashboard",
     icon: <HomeIcon />,
-    link: "/",
+    link: "/dashboard",
   },
   {
     title: "Users",
@@ -66,5 +66,15 @@ export const SidebarData = [
     title: "Setting",
     icon: <SettingsIcon />,
     link: "/setting",
+  },
+  {
+    title: "Register",
+    icon: <ForumIcon />,
+    link: "/register",
+  },
+  {
+    title: "Login",
+    icon: <ForumIcon />,
+    link: "/login",
   },
 ];
