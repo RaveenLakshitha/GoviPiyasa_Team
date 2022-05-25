@@ -1,9 +1,9 @@
 .sidebar{
   background-image: linear-gradient(green, black);
-  flex: 1;
   height: 100vh;
   position: sticky;
   top: 50px;
+  width: 35vh;
 }
 
 .sidebarlist{
@@ -53,7 +53,7 @@
   color: inherit;
 }
 .link:hover{
-  color: #1bf313;
+  color: #4bf545;
 }
 .sideBarList{
   padding: 5px;

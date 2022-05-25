@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { SidebarData } from "../SidebarData";
 import "./styles.css";
+
+
 const Sidebar = () => {
   return (
     <div className="sidebar">

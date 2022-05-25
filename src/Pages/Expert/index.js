@@ -94,17 +94,13 @@ const Expert = () => {
         }}
       />
 
-      <div className="col-8">
-        <Button
-          variant="success"
-          className="float-sm-end m-3"
-          size="sm"
-          onClick={handleShow}
-        >
+      <div className="col-12">
+        <Button variant="success" className="float-sm-end m-2" size="sm" onClick={handleShow}>
           Add Experts
         </Button>
-        <ExpertForm show={show} id={editId} handleClose={handleClose} />
-      </div>
+        <ExpertForm show={show} handleClose={handleClose} />
+      </div> 
+
       {/* {product
         .filter((item) => {
           if (search == "") {
