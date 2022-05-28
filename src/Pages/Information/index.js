@@ -15,7 +15,7 @@ const Information = () => {
     <div className="App1">
       <div className="m-1">
         <div className="row">
-          <div className="col-4">
+          <div className="col-5">
             <input type="text" placeholder="Search..." />
           </div>
           <div className="col-3">
