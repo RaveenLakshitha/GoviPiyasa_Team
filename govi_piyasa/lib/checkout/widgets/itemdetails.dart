@@ -12,27 +12,53 @@
 //     this.category=category;
 //   }
 // }
+import 'package:blogapp/shop/DataModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:http/http.dart' as http;
 import 'package:share/share.dart';
-class Itemdetails extends StatelessWidget {
+class Itemdetails extends StatefulWidget {
   final String text;
   final String price;
   final String image;
   final String quantity;
   final String description;
   final String category;
-
   // receive data from the FirstScreen as a parameter
   Itemdetails(
       {Key key,
-      @required this.text,
-      @required this.price,
-      @required this.image,
-      @required this.quantity,
-      @required this.description,
-      @required this.category})
+        @required this.text,
+        @required this.price,
+        @required this.image,
+        @required this.quantity,
+        @required this.description,
+        @required this.category})
       : super(key: key);
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState(text,price,image,quantity,description,category);
+}
+Future<DataModel> submitData(String itemname,String description,String price,String qty,String category,String image,String deliverystatus)async{
+  var response=await http.post(Uri.parse('https://mongoapi3.herokuapp.com/additem'),
+      body:{"itemname":itemname,"description":description,"price":price,"quantity":qty,"category":category,"image":image,"deliverystatus":deliverystatus});
+  var data=response.body;
+  print(data);
+  if(response.statusCode==201){
+    String responseString=response.body;
+    dataModelFromJson(responseString);
+  }
+}
+class _MyHomePageState extends State<Itemdetails> {
+  double rating=0;
+  final String text;
+  final String price;
+  final String image;
+  final String quantity;
+  final String description;
+  final String category;
+  _MyHomePageState(this.text,this.price,this.image,this.quantity,this.description,this.category);
+  final myController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +72,8 @@ class Itemdetails extends StatelessWidget {
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
+
+                    borderRadius: BorderRadius.circular(10),
                     gradient: LinearGradient(
                       colors: [Colors.lightGreenAccent, Colors.green],
                     ),
@@ -54,12 +82,13 @@ class Itemdetails extends StatelessWidget {
                     SizedBox(
                       height: 50.0,
                     ),
-                    Image(
-                      width: 600,
-                      height: 240,
-                      image: NetworkImage(image),
-                      fit: BoxFit.contain,
-                    ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(70),
+                      child: Image(
+                        width: 300,
+                        height: 240,
+                        image: NetworkImage(image),
+                      ),),
                     SizedBox(
                       height: 10.0,
                     ),
@@ -68,23 +97,54 @@ class Itemdetails extends StatelessWidget {
                           color: Colors.white,
                           fontSize: 20.0,
                         )),
-                      GestureDetector(
-                        child:Icon(Icons.share),
-                        onTap: (){
-                          Share.share('${text}', subject: '${description}');
-                        },
-                      )
+                    GestureDetector(
+                      child:Icon(Icons.share),
+                      onTap: (){
+                        Share.share('${text}', subject: '${description}');
+                      },
+                    )
 
                   ]),
                 ),
               ),
+              Positioned(
+                  left: 20.0,
+                  right: 20.0,
+                  child: Card(
+                      child: Padding(
+                        padding: EdgeInsets.all(15.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Rating:$rating',
+                              style:TextStyle(fontSize: 15),
+                            ),
+                            const SizedBox(height: 22,),
+                            buildRating(),
+                            TextButton(
+                              child:Text(
+                                'Show',style:TextStyle(fontSize:15),
+                              ),
+                              onPressed: ()=>showRating(),
+                            ),
+
+                          ],
+                        ),
+                      ))),
               Expanded(
                 flex: 2,
                 child: Container(
-                  color: Colors.grey[200],
+                  decoration: BoxDecoration(
+
+                    borderRadius: BorderRadius.circular(10),
+                    gradient: LinearGradient(
+                      colors: [Colors.lightGreenAccent, Colors.green],
+                    ),
+                  ),
                   child: Center(
                       child: Card(
-                          margin: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
+                          margin: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
                           child: Container(
                               width: 310.0,
                               height: 170.0,
@@ -200,22 +260,43 @@ class Itemdetails extends StatelessWidget {
               ),
             ],
           ),
-          Positioned(
-              top: MediaQuery.of(context).size.height * 0.45,
-              left: 20.0,
-              right: 20.0,
-              child: Card(
-                  child: Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text("Great Life for great people"),
-                  ],
-                ),
-              ))),
+
         ],
       ),
     );
+
   }
+  Widget buildRating()=>RatingBar.builder(
+    minRating: 1,
+    itemSize: 26,
+    itemPadding: EdgeInsets.symmetric(horizontal: 4),
+    itemBuilder:(context,_)=>Icon(Icons.star,color:Colors.amber),
+    updateOnDrag: true,
+    onRatingUpdate:(rating)=>setState((){
+      this.rating=rating;
+    }),);
+  void showRating()=>showDialog(
+    context:context,
+    builder:(context)=>AlertDialog(
+      title:Text('Rate this Product'),
+      content: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children:[
+            Text('Please leave a star rating',
+                style:TextStyle(fontSize:20)),
+            TextField(
+              controller:myController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Review',
+              ),
+            ),
+          ]
+      ),
+      actions: [
+        TextButton(onPressed:()=>Navigator.pop(context) , child: Text('Ok',style:TextStyle(fontSize:20)))
+      ],
+    ),
+  );
 }
