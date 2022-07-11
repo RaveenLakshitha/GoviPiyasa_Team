@@ -1,0 +1,13 @@
+.HomeMain{
+   display: grid;
+   grid-template-columns: 2fr 10fr;
+   min-height: 100vh;
+   height: max-content;
+}
+
+@media screen and (min-width: 280px) and (max-width:1080px){
+   .HomeMain{
+    grid-template-columns: 1fr 2fr;
+    height: max-content;
+   }
+ }

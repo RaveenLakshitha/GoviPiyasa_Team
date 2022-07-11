@@ -1,9 +1,11 @@
 .sidebar{
   background-image: linear-gradient(green, black);
-  flex: 1;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   position: sticky;
-  top: 50px;
+  padding: 2rem;
+  width: 250px
 }
 
 .sidebarlist{
@@ -12,7 +14,13 @@
   padding: 0;
   
 }
-
+.others{
+  border: #1bf313 5px solid;
+  flex: 4;
+  padding-left: 50px;
+  padding-right: 50px;
+  
+}
 .sidebarlist .row{
   width: 100%;
   height: 45px;
@@ -63,3 +71,22 @@
   border-radius: 10px;
  
 }
+/* 
+.sidebar{
+  background-image: linear-gradient(green, black);
+  height:80px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.menu-bars{
+  margin-left: 2rem;
+  font-size: 2rem;
+  background: none;
+}
+.nav-menu{
+  background-image: linear-gradient(green, black);
+  width: 250px;
+  height: 100vh;
+} */

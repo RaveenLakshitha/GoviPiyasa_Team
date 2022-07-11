@@ -1,19 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Card, Col, Row } from "react-bootstrap";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Legend,
-  Pie,
-  PieChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { Col, Row } from "react-bootstrap";
+import { Pie, PieChart, Tooltip } from "recharts";
 import "../../App.css";
+import AdminCard from "../../Components/AdminCard";
+import BarsChart from "../../Components/BarsChart";
 import "./styles.css";
+
 const Dashboard = () => {
   const [data1, setExpert] = useState([]);
   const [data2, setDelivery] = useState([]);
@@ -56,139 +49,82 @@ const Dashboard = () => {
     { name: "Architectures", users: data3 },
     { name: "Telegram", users: data2 },
   ];
+  ////////////////////////////////////////////////////////////////////////
+  /*   const url =
+    "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/covid-19-qppza/service/REST-API/incoming_webhook/metadata";
+  const [countries, setCountries] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [filterCountry, setFilterCountry] = useState({});
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  useEffect(() => {
+    axios.get(url).then((res) => {
+      setCountries(res.data.countries);
+      const randomCountryNumber = getRandomInt(res.data.countries.length);
+      let randomCountry = res.data.countries[randomCountryNumber];
+      setSelectedCountry(randomCountry);
+      setFilterCountry({ country: randomCountry });
+    });
+  }, []);
+
+  useEffect(() => {
+    if (selectedCountry !== "") {
+      setFilterCountry({ country: selectedCountry });
+    }
+  }, [selectedCountry]); */
+  /////////////////////////////////////////////////////////////////////////
   return (
     <div className="App1">
-      <Row xs={6} md={4}>
+      {/* <div className="Card1"> */}
+      <Row md="auto">
         <Col>
-          <Card
-            border="success"
-            style={{ width: "18rem" }}
-            className="m-4 w-75 text-center bg-success"
-          >
-            <Card.Body>
-              <Card.Title>Sellers</Card.Title>
-              <Card.Text>14</Card.Text>
-            </Card.Body>
-          </Card>
+          <AdminCard name="Buyers" value="40" />
         </Col>
-
         <Col>
-          <Card
-            border="success"
-            style={{ width: "18rem" }}
-            className="m-4 w-75 text-center bg-success"
-          >
-            <Card.Body>
-              <Card.Title>Buyers</Card.Title>
-              <Card.Text>23</Card.Text>
-            </Card.Body>
-          </Card>
+          <AdminCard name="Sellers" value="10" />
         </Col>
-
         <Col>
-          <Card
-            border="success"
-            style={{ width: "18rem" }}
-            className="m-4 w-75 text-center bg-success"
-          >
-            <Card.Body>
-              <Card.Title>Experts</Card.Title>
-              <Card.Text>{data1}</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-
-        <Col>
-          <Card
-            border="success"
-            style={{ width: "18rem" }}
-            className="m-4 w-75 text-center bg-success"
-          >
-            <Card.Body>
-              <Card.Title>Delivery</Card.Title>
-              <Card.Text>{data2}</Card.Text>
-            </Card.Body>
-          </Card>
+          <AdminCard name="Delivery" value={data2} />
         </Col>
       </Row>
 
-      <Row xs={6} md={4}>
+      <Row>
         <Col>
-          <Card
-            border="success"
-            style={{ width: "18rem" }}
-            className=" m-4 w-75 text-center bg-success"
-          >
-            <Card.Body>
-              <Card.Title>Architectures</Card.Title>
-              <Card.Text>{data3}</Card.Text>
-            </Card.Body>
-          </Card>
+          <AdminCard name="Architectures" value={data3} />
         </Col>
+        <Col>
+          <AdminCard name="Experts" value={data1} />
+        </Col>
+        <Col>
+          <AdminCard name="Online Payments" value="320" />
+        </Col>
+      </Row>
 
+      <Row>
         <Col>
-          <Card
-            border="success"
-            style={{ width: "18rem" }}
-            className="m-4 w-75 text-center bg-success"
-          >
-            <Card.Body>
-              <Card.Title>Online Payments</Card.Title>
-              <Card.Text>11</Card.Text>
-            </Card.Body>
-          </Card>
+          <AdminCard name="Cache on Delivery" value="80" />
         </Col>
         <Col>
-          <Card
-            border="success"
-            style={{ width: "18rem" }}
-            className="m-4 w-75 text-center bg-success"
-          >
-            <Card.Body>
-              <Card.Title>Online Payments</Card.Title>
-              <Card.Text>11</Card.Text>
-            </Card.Body>
-          </Card>
+          <AdminCard name="Weekly Orders" value="400" />
         </Col>
         <Col>
-          <Card
-            border="success"
-            style={{ width: "18rem" }}
-            className="m-4 w-75 text-center bg-success"
-          >
-            <Card.Body>
-              <Card.Title>Online Payments</Card.Title>
-              <Card.Text>11</Card.Text>
-            </Card.Body>
-          </Card>
+          <AdminCard name="Online Payments" value="320" />
         </Col>
       </Row>
 
       <div style={{ textAlign: "center" }}>
         <div className="Chart">
-          <BarChart
-            width={400}
-            height={300}
-            data={data}
-            margin={{
-              top: 10,
-              right: 30,
-              left: 30,
-              bottom: 5,
-            }}
-            barSize={20}
-          >
-            <XAxis
-              dataKey="name"
-              scale="point"
-              padding={{ left: 10, right: 10 }}
+          <div className="charts">
+            <BarsChart
+              className="barchart"
+              height={"500px"}
+              width={"800px"}
+              chartId={"629ba3d5-e169-4803-8e37-bd33ab5765e7"}
             />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <CartesianGrid strokeDasharray="3 3" />
-            <Bar dataKey="users" fill="#36ed2f" background={{ fill: "#eee" }} />
-          </BarChart>
+          </div>
           <PieChart width={300} height={300}>
             <Pie
               dataKey="users"
